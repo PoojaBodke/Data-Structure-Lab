@@ -1,0 +1,123 @@
+#include <iostream>
+using namespace std;
+#define size 5
+
+class queue
+{
+    int f,r,job,djob;    //data members
+    int q[size];
+public:
+    queue()   //Default constructor
+    {
+     f=r=-1;   //init front and rear to -1.
+     job=djob=0;
+     
+    }
+    //To check Q is full or not
+    int Qfull()
+    {
+        if(r==size-1)
+            return 1;
+        else
+            return 0;
+    }
+    //To check Q is empty or not
+    int Qempty()
+    {
+        if((f==-1)||(f>r))
+            return 1;
+        else
+            return 0;
+    }
+    void add_que(); //member functions.
+    void displayqueue();
+    void del_que();
+};
+
+//To insert the job inside the simple queue.
+void queue::add_que()
+{
+    cout<<"\nEnter the job:";
+    cin>>job;
+    if(Qfull())
+        cout<<"\nSorry !! Queue is full.......\n";
+    else
+    {
+        if(f==-1)
+        {
+            f=r=0;
+            q[r]=job;
+        }
+        else
+        {
+            r=r+1;
+            q[r]=job;
+        }
+    }    
+        
+} 
+
+//To delete job from the simple queue.
+void queue::del_que()
+{
+    if(Qempty())
+        cout<<"\nSorry Q is empty...\n";
+    else
+    {
+        djob=q[f];
+        f=f+1;
+        cout<<"\nDeleted job is:"<<djob;
+    }
+    
+}
+
+//To show all the jobs from SimpleQueue.
+void queue::displayqueue()
+{
+    cout<<"\nThe simple Queue job are as follows......\n";
+    int i;
+    for(i=f;i<=r;i++)
+    {
+        cout<<"\t"<<q[i];
+    }    
+}
+
+int main()
+{
+    queue s1; //object creation
+    int ch;
+    char z;
+    
+    x: cout<< "\n\t!!!Operating System Job Queue!!!" << endl;
+     cout<<"\n1. Add_Job\n2. Del_Job\n3.Display\n";
+     cout<<"\nEnter Your Choice:";
+     cin>>ch;
+     switch(ch)
+     {
+      case 1:s1.add_que();break;
+      case 2:s1.del_que();break;
+      case 3:s1.displayqueue();break;
+     }
+    cout<<"\nDo you want to continue (y or n)\n";
+    cin>>z;
+      switch(z)
+    {
+      case 'y':goto x;
+        break;
+      case 'n':
+               cout<<"\nTHANK YOU\n";
+               break;
+               
+}
+    return 0;
+} 
+
+                                                                                                                   
+                                                                                                                              
+                                                                                                                              
+
+                  
+
+                 
+
+

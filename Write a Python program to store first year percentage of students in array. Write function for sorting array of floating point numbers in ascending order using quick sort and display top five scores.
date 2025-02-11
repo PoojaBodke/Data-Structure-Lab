@@ -1,0 +1,53 @@
+
+
+def accept_array(A):
+  n = int(input("Enter the total no. of students : "))
+  for i in range(n):
+    x = float(input("Enter the first year percentage of student %d : "%(i+1)))
+    A.append(x)
+  print("Array accepted successfully\n\n");
+
+def display_array(A):
+  n = len(A)
+  if(n == 0):
+    print("\nNo records in the database")
+  else :
+    print("Array of FE Marks : ",end=' ')
+    for i in range(n) :
+      print("%.2f "%A[i],end=' ')
+    print("\n");
+
+def partition(A,l,h):
+  i=l+1
+  j=h
+  while(j>=i):
+    while(i<=h and A[l] >= A[i]):
+      i = i+1
+    while(A[l] <A[j]):
+      j = j-1
+    if(j>i):
+      temp = A[j]
+      A[j] = A[i]
+      A[i] = temp
+  temp = A[l]
+  A[l] = A[j]
+  A[j] = temp
+  return j
+
+def Quicksort(A,l,h):
+  if(l<h):
+    mid = partition(A,l,h)
+    Quicksort(A,l,mid-1)
+    Quicksort(A,mid+1,h)
+def top_five(A):
+  for i in range(len(A)):
+    if (i == 5):
+      break
+    print("{}. {}".format(i+1, A[-i-1]))      
+A = []
+accept_array(A)
+n = len(A)
+Quicksort(A,0,n-1)
+display_array(A)
+print("top five scores are given as :: ")
+top_five(A)
